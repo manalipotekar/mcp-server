@@ -8,9 +8,13 @@ cd to the `examples/snippets/clients` directory and run:
 from mcp.server.fastmcp import FastMCP
 from typing import Optional
 from datetime import datetime
+from system_tools import open_settings, set_brightness
+
 
 # Create an MCP server
 mcp = FastMCP("Demo")
+mcp.tool()(open_settings)
+mcp.tool()(set_brightness)
 
 # In-memory note storage
 notes = {}
@@ -118,3 +122,4 @@ def search_notes(query: str) -> dict:
         if query_lower in note["title"].lower() or query_lower in note["content"].lower()
     ]
     return {"success": True, "results": results, "count": len(results)}
+
